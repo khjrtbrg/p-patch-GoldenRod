@@ -48,6 +48,3 @@ end
 
 gem 'simplecov', :require => false, :group => :test
 gem 'rails_12factor', group: :production
-
-# For styling help
-gem 'bootstrap-sass', '3.2.0.2'
