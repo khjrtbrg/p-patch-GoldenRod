@@ -15,10 +15,12 @@ RSpec.describe UsersController, :type => :controller do
   end
 
   describe "POST #create" do
-    it "is successful" do
+    it "redirects to root" do
       post :create
       expect(response).to redirect_to(root_path)
     end
+
+    
   end
 
 end
