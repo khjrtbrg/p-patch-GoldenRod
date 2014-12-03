@@ -14,6 +14,27 @@ RSpec.describe SessionsController, :type => :controller do
     end
   end
 
+  describe "POST #create" do
+
+    let(:user) { User.create( # creates a functional variable 'user'
+      user_name: "kristen",
+      email: "k@m.com",
+      password: "hello",
+      password_confirmation: "hello"
+      )}
+
+    let(:user_login) { {
+      "user_name"=>"kristen",
+      "password"=>"hello",
+      }
+    }
+
+    # password is authenticated
+    # session is created
+    # user is redirected to root_path
+
+  end
+
   describe "POST #destroy" do
 
     let(:user) { User.create(
