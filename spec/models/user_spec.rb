@@ -63,13 +63,26 @@ describe User, :type => :model do
       expect(user.valid?).to eq false
     end
 
-    # it "is invalid without password confirmation" do
-    #
-    # end
+    it "is invalid without password confirmation" do
+      user = User.create(
+        user_name: "Kristina",
+        email: "k@h.com",
+        admin: false,
+        password: "foo"
+      )
+      expect(user.valid?).to eq false
+    end
 
-    # it "is invalid without matching password confirmation" do
-    #
-    # end
+    it "is invalid without matching password confirmation" do
+      user = User.create(
+        user_name: "Kristina",
+        email: "k@h.com",
+        admin: false,
+        password: "foo",
+        password_confirmation: "bar"
+      )
+      expect(user.valid?).to eq false
+    end
 
     #validate email and username unique
 

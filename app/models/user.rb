@@ -18,5 +18,8 @@ class User < ActiveRecord::Base
             presence: true,
             confirmation: true
 
+  validates :password_confirmation,
+            presence: true
+
   # Make alternative create method that also sets admin to false!
 end
