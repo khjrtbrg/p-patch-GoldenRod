@@ -84,8 +84,43 @@ describe User, :type => :model do
       expect(user.valid?).to eq false
     end
 
-    #validate email and username unique
+    it "is invalid without a unique username" do
+      User.create(
+          user_name: "Kristina",
+          email: "k@h.com",
+          admin: false,
+          password: "foo",
+          password_confirmation: "foo"
+      )
 
+      user = User.create(
+        user_name: "Kristina",
+        email: "ka@h.com",
+        admin: false,
+        password: "bar",
+        password_confirmation: "bar"
+      )
+      expect(user.valid?).to eq false
+    end
+
+    it "is invalid without a unique email" do
+      User.create(
+          user_name: "Kristina H.",
+          email: "k@h.com",
+          admin: false,
+          password: "foo",
+          password_confirmation: "foo"
+      )
+
+      user = User.create(
+        user_name: "Kristina",
+        email: "k@h.com",
+        admin: false,
+        password: "bar",
+        password_confirmation: "bar"
+      )
+      expect(user.valid?).to eq false
+    end
   end
 
 end

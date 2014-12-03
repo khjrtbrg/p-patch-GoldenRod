@@ -8,11 +8,13 @@ class User < ActiveRecord::Base
   # Validations
   validates :user_name,
             presence: true,
-            length: { minimum: 6 }
+            length: { minimum: 6 },
+            uniqueness: true
 
   validates :email,
             presence: true,
-            format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+            format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i },
+            uniqueness: true
 
   validates :password,
             presence: true,
