@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   post "users",      to: "users#create"
 
   # Sessions Routes
-  get  "logout",     to: "sessions#destroy", as: :logout
+  get  "login",      to: "sessions#new",     as: :login
+  post "logout",     to: "sessions#destroy", as: :logout
 
   root "home#index"
 
