@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    redirect_to root_path if @user.save
+    @user.save ? redirect_to(root_path) : render(:new)
   end
 
   private

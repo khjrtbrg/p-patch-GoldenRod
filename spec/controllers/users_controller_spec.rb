@@ -29,9 +29,14 @@ RSpec.describe UsersController, :type => :controller do
       expect { post :create, user_info }.to change(User, :count).by(1)
     end
 
-    it "redirects to root" do
+    it "redirects to root if successful" do
       post :create, user_info
       expect(response).to redirect_to(root_path)
+    end
+
+    it "renders an error if unsuccessful" do
+      post :create, { "user"=> { user_name: "Kristen" } }
+      expect(response).to render_template(:new)
     end
   end
 end
