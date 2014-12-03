@@ -1,7 +1,22 @@
 class User < ActiveRecord::Base
+  has_secure_password
+
+  # Associations
   has_many :posts
   has_many :tools
 
-  validates :user_name, presence: true
-  validates :user_name, length: { minimum: 6 }
+  # Validations
+  validates :user_name,
+            presence: true,
+            length: { minimum: 6 }
+
+  validates :email,
+            presence: true,
+            format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+
+  validates :password,
+            presence: true,
+            confirmation: true
+
+  # Make alternative create method that also sets admin to false!
 end
