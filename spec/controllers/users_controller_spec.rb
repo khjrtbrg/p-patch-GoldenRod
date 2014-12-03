@@ -15,12 +15,23 @@ RSpec.describe UsersController, :type => :controller do
   end
 
   describe "POST #create" do
-    it "redirects to root" do
-      post :create
-      expect(response).to redirect_to(root_path)
+
+    let(:user_info) { { "user"=> {
+      "user_name"=>"kristen",
+      "email"=>"k@m.com",
+      "password"=>"hello",
+      "password_confirmation"=>"hello"
+        }
+      }
+    }
+
+    it "creates a User" do
+      expect { post :create, user_info }.to change(User, :count).by(1)
     end
 
-    
+    it "redirects to root" do
+      post :create, user_info
+      expect(response).to redirect_to(root_path)
+    end
   end
-
 end
