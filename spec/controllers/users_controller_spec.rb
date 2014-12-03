@@ -38,5 +38,10 @@ RSpec.describe UsersController, :type => :controller do
       post :create, { "user"=> { user_name: "Kristen" } }
       expect(response).to render_template(:new)
     end
+
+    it "sets session if successful" do
+      post :create, user_info
+      expect(session[:user_id]).to eq User.find_by(user_name: "kristen").id
+    end
   end
 end
