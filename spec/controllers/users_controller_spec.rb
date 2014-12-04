@@ -34,7 +34,7 @@ RSpec.describe UsersController, :type => :controller do
       expect(response).to redirect_to(root_path)
     end
 
-    it "renders an error if unsuccessful" do
+    it "renders the :new template if unsuccessful" do
       post :create, { "user"=> { user_name: "Kristen" } }
       expect(response).to render_template(:new)
     end

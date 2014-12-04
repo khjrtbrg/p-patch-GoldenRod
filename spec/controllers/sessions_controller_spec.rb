@@ -23,13 +23,26 @@ RSpec.describe SessionsController, :type => :controller do
       password_confirmation: "hello"
       )}
 
-    let(:user_login) { {
-      "user_name"=>"kristen",
+    let(:login_true) { {
+      "email"=>"kristen",
       "password"=>"hello",
       }
     }
 
-    # password is authenticated
+    let(:login_false) { {
+      "email"=>"kristen",
+      "password"=>"foo",
+      }
+    }
+
+    it "authenticates password" do
+      user
+      post :create, login_false
+      expect(response).to render_template(:new)
+    end
+
+    # doesn't log in if user doesn't exist
+    # verify errors
     # session is created
     # user is redirected to root_path
 

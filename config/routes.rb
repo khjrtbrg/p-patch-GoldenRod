@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   # Sessions Routes
   get  "login",      to: "sessions#new",     as: :login
+  post "login",      to: "sessions#create"
   post "logout",     to: "sessions#destroy", as: :logout
 
   root "home#index"
