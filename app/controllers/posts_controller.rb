@@ -14,6 +14,16 @@ class PostsController < ApplicationController
   end
 
   def create
+    if @admin
+      @post = Post.new(post_params)
+      if @post.save
+        redirect_to posts_path
+      else
+        render(:new)
+      end
+    else
+      redirect_to posts_path
+    end
     # create invalid post and inspect @post!!
   end
 
@@ -21,5 +31,9 @@ class PostsController < ApplicationController
 
   def admin?
     @admin = current_user.admin if logged_in?
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :content)
   end
 end
