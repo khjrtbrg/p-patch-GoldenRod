@@ -24,13 +24,13 @@ RSpec.describe SessionsController, :type => :controller do
       )}
 
     let(:login_true) { {
-      "email"=>"kristen",
+      "email"=>"k@m.com",
       "password"=>"hello",
       }
     }
 
     let(:login_false) { {
-      "email"=>"kristen",
+      "email"=>"k@m.com",
       "password"=>"foo",
       }
     }
