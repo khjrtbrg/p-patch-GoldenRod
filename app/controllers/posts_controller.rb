@@ -8,7 +8,6 @@ class PostsController < ApplicationController
   def new
     if @admin
       @post = Post.new
-      @author = current_user.user_name
     else
       redirect_to posts_path
     end
