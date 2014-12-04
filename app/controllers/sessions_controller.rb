@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
   def authenticate_password
     if @user.password == params[:password]
       session[:user_id] = @user.id
+      # @user
     end
   end
 

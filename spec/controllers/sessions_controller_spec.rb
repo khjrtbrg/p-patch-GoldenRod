@@ -35,16 +35,28 @@ RSpec.describe SessionsController, :type => :controller do
       }
     }
 
-    it "authenticates password" do
+    it "denies invalid password" do
       user
       post :create, login_false
       expect(response).to render_template(:new)
     end
 
+    it "accepts valid password" do
+      user
+      post :create, login_true
+      expect(response).to redirect_to(root_path)
+    end
+
+    # it "creates session" do
+    #   user
+    #   post :create, login_false
+    #   expect(response).to render_template(:new)
+    # end
+
+    #
+    # user is redirected to root_path
     # doesn't log in if user doesn't exist
     # verify errors
-    # session is created
-    # user is redirected to root_path
 
   end
 
