@@ -35,6 +35,11 @@ RSpec.describe SessionsController, :type => :controller do
       }
     }
 
+    it "denies non-existent user" do
+      post :create, { email: "dino@dino.com", password: "hello" }
+      expect(response).to render_template(:new)
+    end
+
     it "denies invalid password" do
       user
       post :create, login_false
@@ -47,17 +52,17 @@ RSpec.describe SessionsController, :type => :controller do
       expect(response).to redirect_to(root_path)
     end
 
-    # it "creates session" do
-    #   user
-    #   post :create, login_false
-    #   expect(response).to render_template(:new)
-    # end
+    it "creates session" do
+      user
+      post :create, login_true
+      expect(session[:user_id]).to eq user.id
+    end
 
-    #
-    # user is redirected to root_path
-    # doesn't log in if user doesn't exist
-    # verify errors
-
+    it "returns a nil session" do
+      user
+      post :create, login_false
+      expect(session[:user_id]).to eq nil
+    end
   end
 
   describe "POST #destroy" do
