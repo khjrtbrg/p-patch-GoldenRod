@@ -30,12 +30,12 @@ RSpec.describe PostsController, :type => :controller do
   end
 
   describe "GET #new" do
-    it "is successful" do
+    it "is successful for admin user" do
       get :new, nil, user_id: admin.id
       expect(response.status).to eq 200
     end
 
-    it "renders the :new template" do
+    it "renders the :new template for admin user" do
       get :new, nil, user_id: admin.id
       expect(response).to render_template(:new)
     end
@@ -48,6 +48,29 @@ RSpec.describe PostsController, :type => :controller do
     it "redirects if logged in user is not admin" do
       get :new, nil, user_id: user.id
       expect(response).to redirect_to(posts_path)
+    end
+  end
+
+  describe "POST #create" do
+
+    let(:post_params) { { "post"=> {
+      title: "Best post ever",
+      content: "Best content ever",
+        }
+      }
+    }
+
+    it "is successful for admin" do
+      post :create, post_params, user_id: admin.id
+      expect(response).to redirect_to(posts_path)
+    end
+
+    it "creates post for admin" do
+      expect {
+        post :create,
+        post_params,
+        user_id: admin.id
+      }.to change(Post, :count).by(1)
     end
   end
 end
