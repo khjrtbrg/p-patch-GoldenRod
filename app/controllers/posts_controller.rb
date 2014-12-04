@@ -6,7 +6,16 @@ class PostsController < ApplicationController
   end
 
   def new
-    redirect_to posts_path unless @admin
+    if @admin
+      @post = Post.new
+      @author = current_user.user_name
+    else
+      redirect_to posts_path
+    end
+  end
+
+  def create
+    # create invalid post and inspect @post!!
   end
 
   private

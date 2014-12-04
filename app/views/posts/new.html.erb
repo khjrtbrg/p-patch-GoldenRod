@@ -1,0 +1,9 @@
+<h1>Create New Post</h1>
+
+<%= bootstrap_form_for(@post)  do |f| %>
+<!-- using value: @post.title, etc preserves the user input if validation error -->
+<%= f.text_field  :title,    value: @post.title    %>
+<%= f.text_field  :author,   value: @author        %>
+<%= f.text_area   :content,  value: @post.content  %>
+<%= f.submit %>
+<% end %>
