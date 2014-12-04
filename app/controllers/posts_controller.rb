@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
   def create
     if @admin
-      @post = Post.new(post_params)
+      @post = current_user.posts.create(post_params)
       if @post.save
         redirect_to posts_path
       else

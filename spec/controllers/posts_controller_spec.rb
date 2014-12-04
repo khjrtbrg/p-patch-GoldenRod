@@ -97,5 +97,8 @@ RSpec.describe PostsController, :type => :controller do
         post_params
       }.to change(Post, :count).by(0)
     end
+
+    # test that it renders new if @post.save fails
+
   end
 end
