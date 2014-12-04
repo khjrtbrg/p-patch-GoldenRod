@@ -98,7 +98,10 @@ RSpec.describe PostsController, :type => :controller do
       }.to change(Post, :count).by(0)
     end
 
-    # test that it renders new if @post.save fails
+    it "renders :new if validation fails" do
+      post :create, { post: { title: nil, content: nil } }, user_id: admin.id
+      expect(response).to render_template(:new)
+    end
 
   end
 end
