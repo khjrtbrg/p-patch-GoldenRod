@@ -72,5 +72,30 @@ RSpec.describe PostsController, :type => :controller do
         user_id: admin.id
       }.to change(Post, :count).by(1)
     end
+
+    it "is unsuccessful for logged in, non-admin user" do
+      post :create, post_params, user_id: user.id
+      expect(response).to redirect_to(posts_path)
+    end
+
+    it "does not create post for logged in, non-admin user" do
+      expect {
+        post :create,
+        post_params,
+        user_id: user.id
+      }.to change(Post, :count).by(0)
+    end
+
+    it "is unsuccessful for guest user" do
+      post :create, post_params
+      expect(response).to redirect_to(posts_path)
+    end
+
+    it "does not create post for guest user" do
+      expect {
+        post :create,
+        post_params
+      }.to change(Post, :count).by(0)
+    end
   end
 end
