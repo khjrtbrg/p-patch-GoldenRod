@@ -29,10 +29,6 @@ class PostsController < ApplicationController
 
   private
 
-  def admin?
-    @admin = current_user.admin if logged_in?
-  end
-
   def post_params
     params.require(:post).permit(:title, :content)
   end

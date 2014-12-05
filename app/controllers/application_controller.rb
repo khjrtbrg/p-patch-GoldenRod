@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   def logged_in?
     session[:user_id] ? true : false
   end
+
+  def admin?
+    @admin = current_user.admin if logged_in?
+  end
 end
