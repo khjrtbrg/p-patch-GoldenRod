@@ -26,6 +26,10 @@ class ToolsController < ApplicationController
     end
   end
 
+  def show
+    redirect_to tools_path
+  end
+
   private
 
   def tools_params

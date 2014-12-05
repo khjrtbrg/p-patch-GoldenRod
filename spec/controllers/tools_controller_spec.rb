@@ -103,4 +103,11 @@ RSpec.describe ToolsController, :type => :controller do
      expect(response).to render_template(:new)
     end
   end
+
+  describe "GET #show" do
+    it "redirects to :index" do
+      get :show, { id: 15 }
+      expect(response).to redirect_to(tools_path)
+    end
+  end
 end

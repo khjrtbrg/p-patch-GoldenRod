@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get  "tools",      to: "tools#index",      as: :tools
   get  "tools/new",  to: "tools#new",        as: :new_tool
   post "tools",      to: "tools#create"
+  get  "tools/:id",  to: "tools#show",       as: :tool
 
   root "home#index"
 
