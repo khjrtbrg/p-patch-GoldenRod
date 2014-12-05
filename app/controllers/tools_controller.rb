@@ -14,7 +14,20 @@ class ToolsController < ApplicationController
 
   def create
     if @admin
+      @tool = current_user.tools.new(tools_params)
+      if @tool.save
+        redirect_to tools_path
+      else
+        render :new
+      end
+    else
       redirect_to tools_path
     end
+  end
+
+  private
+
+  def tools_params
+    params.require(:tool).permit(:name, :image_url)
   end
 end

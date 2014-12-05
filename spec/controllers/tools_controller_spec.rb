@@ -65,20 +65,20 @@ RSpec.describe ToolsController, :type => :controller do
       expect(response).to redirect_to(tools_path)
     end
 
-    # it "creates post for admin" do
-    #   expect {
-    #     post :create,
-    #     tool_params,
-    #     user_id: admin.id
-    #   }.to change(Post, :count).by(1)
-    # end
-    #
+    it "creates tool for admin" do
+      expect {
+        post :create,
+        tool_params,
+        user_id: admin.id
+      }.to change(Tool, :count).by(1)
+    end
+
     # it "is unsuccessful for logged in, non-admin user" do
     #   post :create, tool_params, user_id: user.id
     #   expect(response).to redirect_to(posts_path)
     # end
     #
-    # it "does not create post for logged in, non-admin user" do
+    # it "does not create tool for logged in, non-admin user" do
     #   expect {
     #     post :create,
     #     tool_params,
@@ -91,7 +91,7 @@ RSpec.describe ToolsController, :type => :controller do
     #   expect(response).to redirect_to(posts_path)
     # end
     #
-    # it "does not create post for guest user" do
+    # it "does not create tool for guest user" do
     #   expect {
     #     post :create,
     #     tool_params
