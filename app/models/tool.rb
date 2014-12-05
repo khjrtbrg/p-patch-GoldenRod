@@ -9,13 +9,13 @@ class Tool < ActiveRecord::Base
             presence: true,
             format: { with: URI.regexp(["http"]) }
 
-  # validate :url_returns_200
+  validate :url_returns_200
 
-#   def url_returns_200
-#     uri = URI(image_url)
-# p uri
-#     a = Net::HTTP.get_response(uri).is_a?(Net::HTTPSuccess)
-# puts a
-#   end
-
+  # Custom methods
+  def url_returns_200
+    uri = URI(image_url)
+    unless Net::HTTP.get_response(uri).is_a?(Net::HTTPSuccess)
+      errors.add(:image_url, "Cannot fetch the URL specified.")
+    end
+  end
 end
