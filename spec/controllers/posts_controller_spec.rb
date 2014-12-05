@@ -40,7 +40,7 @@ RSpec.describe PostsController, :type => :controller do
       expect(response).to render_template(:new)
     end
 
-    it "redirects if user is not logged in" do
+    it "redirects if guest user" do
       get :new
       expect(response).to redirect_to(posts_path)
     end
