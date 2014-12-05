@@ -3,7 +3,7 @@ class Tool < ActiveRecord::Base
   belongs_to :user
 
   # Validations
-  validates :name, :user_id, presence: true
+  validates :name, presence: true
 
   validates :image_url,
             presence: true,
