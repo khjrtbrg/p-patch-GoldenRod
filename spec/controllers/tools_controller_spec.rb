@@ -73,31 +73,31 @@ RSpec.describe ToolsController, :type => :controller do
       }.to change(Tool, :count).by(1)
     end
 
-    # it "is unsuccessful for logged in, non-admin user" do
-    #   post :create, tool_params, user_id: user.id
-    #   expect(response).to redirect_to(posts_path)
-    # end
-    #
-    # it "does not create tool for logged in, non-admin user" do
-    #   expect {
-    #     post :create,
-    #     tool_params,
-    #     user_id: user.id
-    #   }.to change(Post, :count).by(0)
-    # end
-    #
-    # it "is unsuccessful for guest user" do
-    #   post :create, tool_params
-    #   expect(response).to redirect_to(posts_path)
-    # end
-    #
-    # it "does not create tool for guest user" do
-    #   expect {
-    #     post :create,
-    #     tool_params
-    #   }.to change(Post, :count).by(0)
-    # end
-    #
+    it "is unsuccessful for logged in, non-admin user" do
+      post :create, tool_params, user_id: user.id
+      expect(response).to redirect_to(tools_path)
+    end
+
+    it "does not create tool for logged in, non-admin user" do
+      expect {
+        post :create,
+        tool_params,
+        user_id: user.id
+      }.to change(Tool, :count).by(0)
+    end
+
+    it "is unsuccessful for guest user" do
+      post :create, tool_params
+      expect(response).to redirect_to(tools_path)
+    end
+
+    it "does not create tool for guest user" do
+      expect {
+        post :create,
+        tool_params
+      }.to change(Tool, :count).by(0)
+    end
+
     # it "renders :new if validation fails" do
     #   post :create, { post: { title: nil, content: nil } }, user_id: admin.id
     #   expect(response).to render_template(:new)
