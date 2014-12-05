@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :admin?
 
   def index
-
+    @posts = Post.order(updated_at: :desc)
   end
 
   def new
