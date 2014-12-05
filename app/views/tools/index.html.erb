@@ -1,9 +1,15 @@
+<h1>Tool Library</h1>
+
 <% if @admin %>
-  <%= link_to "Add Tool", new_tool_path %>
+  <%= link_to "Add Tool", new_tool_path, class: "btn btn-success" %>
 <% end %>
 
-<% @tools.each do |tool| %>
-  <%= tool.name %>
-  <%= image_tag tool.image_url %>
-  <%= button_to "Borrow",  %>
-<% end %>
+<table class="table tools">
+  <% @tools.each do |tool| %>
+    <tr>
+      <td><%= image_tag tool.image_url, class: "tool-img" %></td>
+      <td><%= tool.name %></td>
+      <td><%= button_to "Borrow", "#", class: "btn btn-info" %></td>
+    </tr>
+  <% end %>
+</table>

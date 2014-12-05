@@ -5,3 +5,29 @@ body {
 nav.navbar.navbar-inverse.navbar-fixed-top {
   // background-color: green;
 }
+
+nav.navbar .btn {
+  margin-top: 8px;
+}
+
+.tool-img {
+  width: 50%;
+}
+
+table.tools {
+  margin-top: 1.5%;
+}
+
+table.tools tr td {
+  vertical-align: middle;
+}
+
+table.tools tr td:first-child {
+  width: 25%;
+}
+
+@media screen and (max-width: 767px) {
+  nav.navbar .btn {
+    margin: 10px 15px;
+  }
+}
