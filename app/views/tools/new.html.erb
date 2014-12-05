@@ -1,0 +1,7 @@
+<h1>Create New Tool</h1>
+
+<%= bootstrap_form_for(@tool)  do |f| %>
+  <%= f.text_field  :name,       value: @tool.name       %>
+  <%= f.text_field  :image_url,  value: @tool.image_url  %>
+  <%= f.submit %>
+<% end %>
