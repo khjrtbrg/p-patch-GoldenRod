@@ -11,4 +11,10 @@ class ToolsController < ApplicationController
       redirect_to tools_path
     end
   end
+
+  def create
+    if @admin
+      redirect_to tools_path
+    end
+  end
 end

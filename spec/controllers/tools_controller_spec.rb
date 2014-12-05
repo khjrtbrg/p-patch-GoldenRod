@@ -50,4 +50,58 @@ RSpec.describe ToolsController, :type => :controller do
       expect(response).to redirect_to(tools_path)
     end
   end
+
+  describe "POST #create" do
+
+    let(:tool_params) { { "tool"=> {
+      name: "Best tool ever",
+      image_url: "http://www.tool.com/tool.jpg",
+        }
+      }
+    }
+
+    it "is successful for admin" do
+      post :create, tool_params, user_id: admin.id
+      expect(response).to redirect_to(tools_path)
+    end
+
+    # it "creates post for admin" do
+    #   expect {
+    #     post :create,
+    #     tool_params,
+    #     user_id: admin.id
+    #   }.to change(Post, :count).by(1)
+    # end
+    #
+    # it "is unsuccessful for logged in, non-admin user" do
+    #   post :create, tool_params, user_id: user.id
+    #   expect(response).to redirect_to(posts_path)
+    # end
+    #
+    # it "does not create post for logged in, non-admin user" do
+    #   expect {
+    #     post :create,
+    #     tool_params,
+    #     user_id: user.id
+    #   }.to change(Post, :count).by(0)
+    # end
+    #
+    # it "is unsuccessful for guest user" do
+    #   post :create, tool_params
+    #   expect(response).to redirect_to(posts_path)
+    # end
+    #
+    # it "does not create post for guest user" do
+    #   expect {
+    #     post :create,
+    #     tool_params
+    #   }.to change(Post, :count).by(0)
+    # end
+    #
+    # it "renders :new if validation fails" do
+    #   post :create, { post: { title: nil, content: nil } }, user_id: admin.id
+    #   expect(response).to render_template(:new)
+    # end
+    #
+  end
 end
