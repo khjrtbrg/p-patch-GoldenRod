@@ -3,5 +3,9 @@ class Tool < ActiveRecord::Base
   belongs_to :user
 
   # Validations
-  validates :name, :image_url, :user_id, presence: true
+  validates :name, :user_id, presence: true
+
+  validates :image_url,
+            presence: true,
+            format: { with: URI.regexp(["http"]) }
 end
