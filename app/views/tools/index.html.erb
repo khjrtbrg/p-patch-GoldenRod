@@ -1,3 +1,8 @@
 <% if @admin %>
   <%= link_to "Add Tool", new_tool_path %>
 <% end %>
+
+<% @tools.each do |tool| %>
+  <%= tool.name %>
+  <%= image_tag tool.image_url %>
+<% end %>

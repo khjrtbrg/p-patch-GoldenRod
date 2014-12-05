@@ -2,6 +2,7 @@ class ToolsController < ApplicationController
   before_action :admin?
 
   def index
+    @tools = Tool.order(updated_at: :desc)
   end
 
   def new
