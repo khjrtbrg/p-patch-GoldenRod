@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   # Tools Routes
   get  "tools",      to: "tools#index",      as: :tools
+  get  "tools/new",  to: "tools#new",        as: :new_tool
 
   root "home#index"
 
