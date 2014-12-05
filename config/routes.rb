@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get  "posts/new",  to: "posts#new",        as: :new_post
   post "posts",      to: "posts#create"
 
+  # Tools Routes
+  get  "tools",      to: "tools#index",      as: :tools
+
   root "home#index"
 
 end
