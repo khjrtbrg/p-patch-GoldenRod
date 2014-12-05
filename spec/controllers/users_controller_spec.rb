@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe UsersController, :type => :controller do
 
+  describe "GET #index" do
+    it "redirects to the homepage" do
+      get :index
+      expect(response).to redirect_to(root_path)
+    end
+  end
+
   describe "GET #new" do
     it "is successful" do
       get :new
