@@ -35,19 +35,19 @@ RSpec.describe ToolsController, :type => :controller do
       expect(response.status).to eq 200
     end
 
-    # it "renders the :new template for admin user" do
-    #   get :new, nil, user_id: admin.id
-    #   expect(response).to render_template(:new)
-    # end
-    #
-    # it "redirects if user is not logged in" do
-    #   get :new
-    #   expect(response).to redirect_to(posts_path)
-    # end
-    #
-    # it "redirects if logged in user is not admin" do
-    #   get :new, nil, user_id: user.id
-    #   expect(response).to redirect_to(posts_path)
-    # end
+    it "renders the :new template for admin user" do
+      get :new, nil, user_id: admin.id
+      expect(response).to render_template(:new)
+    end
+
+    it "redirects if guest user" do
+      get :new
+      expect(response).to redirect_to(tools_path)
+    end
+
+    it "redirects if logged in user is not admin" do
+      get :new, nil, user_id: user.id
+      expect(response).to redirect_to(tools_path)
+    end
   end
 end
