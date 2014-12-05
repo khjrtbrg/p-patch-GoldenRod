@@ -22,4 +22,7 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  # For Reference
+  resources :flamingo
+
 end
