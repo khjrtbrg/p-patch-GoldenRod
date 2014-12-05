@@ -53,7 +53,13 @@ RSpec.describe Tool, :type => :model do
       expect(tool.valid?).to eq false
     end
 
-    it "is invalid if image_url is not valid web address" do
-    end
+    # it "is invalid if image_url is not valid web address" do
+    #   tool = Tool.create(
+    #     name: "Shovel",
+    #     user_id: admin.id,
+    #     image_url: "http://tools.com/tool.jpg"
+    #   )
+    #   expect(tool.valid?).to eq false
+    # end
   end
 end
