@@ -98,10 +98,9 @@ RSpec.describe ToolsController, :type => :controller do
       }.to change(Tool, :count).by(0)
     end
 
-    # it "renders :new if validation fails" do
-    #   post :create, { post: { title: nil, content: nil } }, user_id: admin.id
-    #   expect(response).to render_template(:new)
-    # end
-    #
+    it "renders :new if validation fails" do
+     post :create, { tool: { name: nil, image_url: nil } }, user_id: admin.id
+     expect(response).to render_template(:new)
+    end
   end
 end
