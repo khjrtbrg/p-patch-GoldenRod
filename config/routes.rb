@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get  "tools/new",  to: "tools#new",        as: :new_tool
   post "tools",      to: "tools#create"
   get  "tools/:id",  to: "tools#show",       as: :tool
+  patch "tools/:id", to: "tools#update"
 
   root "home#index"
 
