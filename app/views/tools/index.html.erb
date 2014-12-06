@@ -9,7 +9,7 @@
     <tr>
       <td><%= image_tag tool.image_url, class: "tool-img" %></td>
       <td><%= tool.name %></td>
-      <td><%= button_to "Borrow", "#", class: "btn btn-info" %></td>
+      <td><%= button_to "Borrow", tool_path(tool.id), method: :patch, class: "btn btn-info" %></td>
     </tr>
   <% end %>
 </table>
