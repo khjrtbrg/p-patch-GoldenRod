@@ -30,6 +30,16 @@ class ToolsController < ApplicationController
     redirect_to tools_path
   end
 
+  def update
+    tool = Tool.find(params[:id])
+    if tool.update(user_id: current_user.id)
+      redirect_to tools_path
+    else
+      render :index
+      # add flash message
+    end
+  end
+
   private
 
   def tools_params
