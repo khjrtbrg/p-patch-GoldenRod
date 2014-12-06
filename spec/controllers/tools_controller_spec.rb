@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe ToolsController, :type => :controller do
 
+  # can have context
+  # before action user vs admin
+  # try to have test with let!(:user)
+
   let(:user) { User.create( # creates a functional variable 'user'
     user_name: "kristen",
     email: "k@m.com",
@@ -30,6 +34,12 @@ RSpec.describe ToolsController, :type => :controller do
   end
 
   describe "GET #new" do
+
+    # do this, and separate out into admin & user context
+    # before(:each) do
+    #   session[:user_id] = user.id
+    # end
+
     it "is successful for admin user" do
       get :new, nil, user_id: admin.id
       expect(response.status).to eq 200
@@ -108,6 +118,30 @@ RSpec.describe ToolsController, :type => :controller do
     it "redirects to :index" do
       get :show, { id: 15 }
       expect(response).to redirect_to(tools_path)
+    end
+  end
+
+  describe "PATCH #update" do
+
+    let(:tool) { Tool.create(
+      name: "Shovel",
+      image_url: "http://www.tool.com/tool.jpg"
+      )
+    }
+
+    before(:each) do
+      session[:user_id] = user.id
+    end
+
+    it "is successful" do
+      patch :update, { id: tool.id }
+      expect(response).to redirect_to(tools_path)
+    end
+
+    it "updates a tool object" do
+      patch :update, { id: tool.id }
+      tool.reload
+      expect(tool.user_id).to eq user.id
     end
   end
 end
