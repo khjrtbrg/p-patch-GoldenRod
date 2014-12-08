@@ -2,13 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ToolsController, :type => :controller do
 
-  # can have context
-  # before action user vs admin
-  # try to have test with let!(:user)
-
-  let(:user) { create(:user) }
-
-  let(:admin) { create(:admin) }
+  let!(:user) { create(:user) }
+  let!(:admin) { create(:admin) }
 
   describe "GET #index" do
     it "is successful" do
@@ -31,8 +26,18 @@ RSpec.describe ToolsController, :type => :controller do
       end
     end
 
-    context "if admin user" do
+    context "if logged in user" do
+      before(:each) do
+        session[:user_id] = user.id
+      end
 
+      it "redirects" do
+        get :new
+        expect(response).to redirect_to(tools_path)
+      end
+    end
+
+    context "if admin user" do
       before(:each) do
         session[:user_id] = admin.id
       end
@@ -47,18 +52,6 @@ RSpec.describe ToolsController, :type => :controller do
         expect(response).to render_template(:new)
       end
     end
-
-    context "if logged in user" do
-
-      before(:each) do
-        session[:user_id] = user.id
-      end
-
-      it "redirects" do
-        get :new
-        expect(response).to redirect_to(tools_path)
-      end
-    end
   end
 
   describe "POST #create" do
@@ -70,47 +63,59 @@ RSpec.describe ToolsController, :type => :controller do
       }
     }
 
-    it "is successful for admin" do
-      post :create, tool_params, user_id: admin.id
-      expect(response).to redirect_to(tools_path)
+    context "if guest user" do
+      it "is unsuccessful" do
+        post :create, tool_params
+        expect(response).to redirect_to(tools_path)
+      end
+
+      it "does not create tool" do
+        expect {
+          post :create,
+          tool_params
+        }.to change(Tool, :count).by(0)
+      end
     end
 
-    it "creates tool for admin" do
-      expect {
-        post :create,
-        tool_params,
-        user_id: admin.id
-      }.to change(Tool, :count).by(1)
+    context "if logged in user" do
+      before(:each) do
+        session[:user_id] = user.id
+      end
+
+      it "is unsuccessful" do
+        post :create, tool_params
+        expect(response).to redirect_to(tools_path)
+      end
+
+      it "does not create tool" do
+        expect {
+          post :create,
+          tool_params
+        }.to change(Tool, :count).by(0)
+      end
     end
 
-    it "is unsuccessful for logged in, non-admin user" do
-      post :create, tool_params, user_id: user.id
-      expect(response).to redirect_to(tools_path)
-    end
+    context "if admin user" do
+      before(:each) do
+        session[:user_id] = admin.id
+      end
 
-    it "does not create tool for logged in, non-admin user" do
-      expect {
-        post :create,
-        tool_params,
-        user_id: user.id
-      }.to change(Tool, :count).by(0)
-    end
+      it "is successful" do
+        post :create, tool_params
+        expect(response).to redirect_to(tools_path)
+      end
 
-    it "is unsuccessful for guest user" do
-      post :create, tool_params
-      expect(response).to redirect_to(tools_path)
-    end
+      it "creates tool" do
+        expect {
+          post :create,
+          tool_params
+        }.to change(Tool, :count).by(1)
+      end
 
-    it "does not create tool for guest user" do
-      expect {
-        post :create,
-        tool_params
-      }.to change(Tool, :count).by(0)
-    end
-
-    it "renders :new if validation fails" do
-     post :create, { tool: { name: nil, image_url: nil } }, user_id: admin.id
-     expect(response).to render_template(:new)
+      it "renders :new if validation fails" do
+        post :create, { tool: { name: nil, image_url: nil } }
+        expect(response).to render_template(:new)
+      end
     end
   end
 
