@@ -11,11 +11,12 @@
       <td><%= tool.name %></td>
       <td>
         <% if tool.checked_out_by?(current_user) %>
-          <%= button_to "Return", tool_path(tool.id), method: :patch, class: "btn btn-info" %>
+          <%= render "return_or_borrow_button", label: "Return", tool: tool %>
+          <!-- label + tool = keys for the partial -->
         <% elsif tool.unavailable? %>
           <span class="red">Not Available</span>
         <% else %>
-          <%= button_to "Borrow", tool_path(tool.id), method: :patch, class: "btn btn-info" %>
+          <%= render "return_or_borrow_button", label: "Borrow", tool: tool %>
         <% end %>
       </td>
     </tr>
