@@ -18,4 +18,13 @@ class Tool < ActiveRecord::Base
   #     errors.add(:image_url, "Cannot fetch the URL specified.")
   #   end
   # end
+
+  # Methods
+  def checked_out_by?(user) # user.has_tool?
+    user_id == user.id
+  end
+
+  def unavailable?
+    user_id ? true : false
+  end
 end
