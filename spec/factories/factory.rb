@@ -14,4 +14,9 @@ FactoryGirl.define do
     password_confirmation "hello"
     admin true
   end
+
+  factory :tool do
+    name "Shovel"
+    image_url "http://www.tool.com/tool.jpg"
+  end
 end

@@ -128,25 +128,23 @@ RSpec.describe ToolsController, :type => :controller do
 
   describe "PATCH #update" do
 
-    let(:tool) { Tool.create(
-      name: "Shovel",
-      image_url: "http://www.tool.com/tool.jpg"
-      )
-    }
+    let(:tool) { create(:tool) }
 
-    before(:each) do
-      session[:user_id] = user.id
-    end
+    context "if logged in user" do
+      before(:each) do
+        session[:user_id] = user.id
+      end
 
-    it "is successful" do
-      patch :update, { id: tool.id }
-      expect(response).to redirect_to(tools_path)
-    end
+      it "is successful" do
+        patch :update, { id: tool.id }
+        expect(response).to redirect_to(tools_path)
+      end
 
-    it "updates a tool object" do
-      patch :update, { id: tool.id }
-      tool.reload
-      expect(tool.user_id).to eq user.id
+      it "updates a tool object" do
+        patch :update, { id: tool.id }
+        tool.reload
+        expect(tool.user_id).to eq user.id
+      end
     end
   end
 end
