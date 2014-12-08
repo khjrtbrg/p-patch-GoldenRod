@@ -6,20 +6,9 @@ RSpec.describe ToolsController, :type => :controller do
   # before action user vs admin
   # try to have test with let!(:user)
 
-  let(:user) { User.create( # creates a functional variable 'user'
-    user_name: "kristen",
-    email: "k@m.com",
-    password: "hello",
-    password_confirmation: "hello"
-  )}
+  let(:user) { FactoryGirl.create(:user) }
 
-  let(:admin) { User.create( # creates a functional variable 'user'
-    user_name: "kristen",
-    email: "k@m.com",
-    password: "hello",
-    password_confirmation: "hello",
-    admin: true
-  )}
+  let(:admin) { FactoryGirl.create(:admin) }
 
   describe "GET #index" do
     it "is successful" do
