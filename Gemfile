@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 group :development, :test do
   gem 'rspec-rails'
   gem 'dotenv-rails'
+  gem 'factory_girl_rails'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
