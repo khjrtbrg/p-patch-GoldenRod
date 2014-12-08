@@ -10,7 +10,9 @@
       <td><%= image_tag tool.image_url, class: "tool-img" %></td>
       <td><%= tool.name %></td>
       <td>
-        <% if tool.checked_out_by?(current_user) %>
+        <% if current_user.nil?  %>
+          <span class="green">Sign-up or sign-in to borrow tools!</span>
+        <% elsif tool.checked_out_by?(current_user) %>
           <%= render "return_or_borrow_button", label: "Return", tool: tool %>
           <!-- label + tool = keys for the partial -->
         <% elsif tool.unavailable? %>

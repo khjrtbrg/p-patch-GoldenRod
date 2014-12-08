@@ -30,6 +30,10 @@ span.red {
   color: red;
 }
 
+span.green {
+  color: rgb(23, 173, 23);
+}
+
 @media screen and (max-width: 767px) {
   nav.navbar .btn {
     margin: 10px 15px;

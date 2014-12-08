@@ -21,7 +21,7 @@ class Tool < ActiveRecord::Base
 
   # Methods
   def checked_out_by?(user) # user.has_tool?
-    user_id == user.id
+    user_id == user.id if user
   end
 
   def unavailable?
