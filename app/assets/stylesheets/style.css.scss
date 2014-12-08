@@ -26,6 +26,10 @@ table.tools tr td:first-child {
   width: 25%;
 }
 
+span.red {
+  color: red;
+}
+
 @media screen and (max-width: 767px) {
   nav.navbar .btn {
     margin: 10px 15px;

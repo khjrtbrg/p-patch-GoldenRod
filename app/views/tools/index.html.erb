@@ -10,8 +10,10 @@
       <td><%= image_tag tool.image_url, class: "tool-img" %></td>
       <td><%= tool.name %></td>
       <td>
-        <% if tool.user_id %>
+        <% if tool.user_id == current_user.id %>
           <%= button_to "Return", tool_path(tool.id), method: :patch, class: "btn btn-info" %>
+        <% elsif tool.user_id %>
+          <span class="red">Not Available</span>
         <% else %>
           <%= button_to "Borrow", tool_path(tool.id), method: :patch, class: "btn btn-info" %>
         <% end %>
