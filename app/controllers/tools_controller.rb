@@ -2,7 +2,7 @@ class ToolsController < ApplicationController
   before_action :admin?
 
   def index
-    @tools = Tool.order(updated_at: :desc)
+    @tools = Tool.order(created_at: :desc)
   end
 
   def new
@@ -15,7 +15,7 @@ class ToolsController < ApplicationController
 
   def create
     if @admin
-      @tool = current_user.tools.new(tools_params)
+      @tool = Tool.new(tools_params)
       if @tool.save
         redirect_to tools_path
       else
