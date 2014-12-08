@@ -6,9 +6,9 @@ RSpec.describe ToolsController, :type => :controller do
   # before action user vs admin
   # try to have test with let!(:user)
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { create(:user) }
 
-  let(:admin) { FactoryGirl.create(:admin) }
+  let(:admin) { create(:admin) }
 
   describe "GET #index" do
     it "is successful" do
@@ -24,29 +24,40 @@ RSpec.describe ToolsController, :type => :controller do
 
   describe "GET #new" do
 
-    # do this, and separate out into admin & user context
-    # before(:each) do
-    #   session[:user_id] = user.id
-    # end
-
-    it "is successful for admin user" do
-      get :new, nil, user_id: admin.id
-      expect(response.status).to eq 200
+    context "if guest user" do
+      it "redirects" do
+        get :new
+        expect(response).to redirect_to(tools_path)
+      end
     end
 
-    it "renders the :new template for admin user" do
-      get :new, nil, user_id: admin.id
-      expect(response).to render_template(:new)
+    context "if admin user" do
+
+      before(:each) do
+        session[:user_id] = admin.id
+      end
+
+      it "is successful" do
+        get :new
+        expect(response.status).to eq 200
+      end
+
+      it "renders the :new template" do
+        get :new
+        expect(response).to render_template(:new)
+      end
     end
 
-    it "redirects if guest user" do
-      get :new
-      expect(response).to redirect_to(tools_path)
-    end
+    context "if logged in user" do
 
-    it "redirects if logged in user is not admin" do
-      get :new, nil, user_id: user.id
-      expect(response).to redirect_to(tools_path)
+      before(:each) do
+        session[:user_id] = user.id
+      end
+
+      it "redirects" do
+        get :new
+        expect(response).to redirect_to(tools_path)
+      end
     end
   end
 
