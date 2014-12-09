@@ -13,12 +13,12 @@
         <% if current_user.nil?  %>
           <span class="green">Sign-up or sign-in to borrow tools!</span>
         <% elsif tool.checked_out_by?(current_user) %>
-          <%= render "return_or_borrow_button", label: "Return", tool: tool %>
+          <%= button_to "Return", tool_path(tool.id), method: :patch, class: "btn btn-danger" %>
           <!-- label + tool = keys for the partial -->
         <% elsif tool.unavailable? %>
           <span class="red">Not Available</span>
         <% else %>
-          <%= render "return_or_borrow_button", label: "Borrow", tool: tool %>
+          <%= button_to "Borrow", tool_path(tool.id), method: :patch, class: "btn btn-info" %>
         <% end %>
       </td>
     </tr>
