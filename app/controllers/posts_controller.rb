@@ -17,6 +17,10 @@ class PostsController < ApplicationController
     if @admin
       @post = current_user.posts.new(post_params)
       if @post.save
+        User.all.each do |user|
+          email = PostMailer.new_post_alert(user, @post)
+          email.deliver
+        end
         redirect_to posts_path
       else
         render(:new)
