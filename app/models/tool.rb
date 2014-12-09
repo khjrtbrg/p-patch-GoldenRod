@@ -29,10 +29,8 @@ class Tool < ActiveRecord::Base
   end
 
   def change_tool_status(user)
-    if user_id
-      update(user_id: nil)
-    else
-      update(user_id: user.id)
+    if user
+      user_id ? update(user_id: nil) : update(user_id: user.id)
     end
   end
 end

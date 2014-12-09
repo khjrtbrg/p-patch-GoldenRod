@@ -132,7 +132,10 @@ RSpec.describe ToolsController, :type => :controller do
     let(:borrowed_tool) { create(:borrowed_tool) }
 
     context "if guest" do
-      # add tests for this!
+      it "is unsuccessful" do
+        patch :update, { id: tool.id }
+        expect(response).to render_template(:index)
+      end
     end
 
     context "if logged in user" do
