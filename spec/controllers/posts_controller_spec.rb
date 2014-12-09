@@ -18,24 +18,39 @@ RSpec.describe PostsController, :type => :controller do
   end
 
   describe "GET #new" do
-    it "is successful for admin user" do
-      get :new, nil, user_id: admin.id
-      expect(response.status).to eq 200
+
+    context "if guest" do
+      it "redirects" do
+        get :new
+        expect(response).to redirect_to(posts_path)
+      end
     end
 
-    it "renders the :new template for admin user" do
-      get :new, nil, user_id: admin.id
-      expect(response).to render_template(:new)
+    context "if user" do
+      before(:each) do
+        session[:user_id] = user.id
+      end
+
+      it "redirects" do
+        get :new
+        expect(response).to redirect_to(posts_path)
+      end
     end
 
-    it "redirects if guest user" do
-      get :new
-      expect(response).to redirect_to(posts_path)
-    end
+    context "if admin" do
+      before(:each) do
+        session[:user_id] = admin.id
+      end
 
-    it "redirects if logged in user is not admin" do
-      get :new, nil, user_id: user.id
-      expect(response).to redirect_to(posts_path)
+      it "is successful" do
+        get :new
+        expect(response.status).to eq 200
+      end
+
+      it "renders the :new template" do
+        get :new
+        expect(response).to render_template(:new)
+      end
     end
   end
 
@@ -48,48 +63,59 @@ RSpec.describe PostsController, :type => :controller do
       }
     }
 
-    it "is successful for admin" do
-      post :create, post_params, user_id: admin.id
-      expect(response).to redirect_to(posts_path)
+    context "if guest" do
+      it "is unsuccessful" do
+        post :create, post_params
+        expect(response).to redirect_to(posts_path)
+      end
+
+      it "does not create post" do
+        expect {
+          post :create,
+          post_params
+        }.to change(Post, :count).by(0)
+      end
     end
 
-    it "creates post for admin" do
-      expect {
-        post :create,
-        post_params,
-        user_id: admin.id
-      }.to change(Post, :count).by(1)
+    context "if user" do
+      before(:each) do
+        session[:user_id] = user.id
+      end
+
+      it "is unsuccessful" do
+        post :create, post_params
+        expect(response).to redirect_to(posts_path)
+      end
+
+      it "does not create post" do
+        expect {
+          post :create,
+          post_params
+        }.to change(Post, :count).by(0)
+      end
     end
 
-    it "is unsuccessful for logged in, non-admin user" do
-      post :create, post_params, user_id: user.id
-      expect(response).to redirect_to(posts_path)
-    end
+    context "if admin" do
+      before(:each) do
+        session[:user_id] = admin.id
+      end
 
-    it "does not create post for logged in, non-admin user" do
-      expect {
-        post :create,
-        post_params,
-        user_id: user.id
-      }.to change(Post, :count).by(0)
-    end
+      it "is successful" do
+        post :create, post_params
+        expect(response).to redirect_to(posts_path)
+      end
 
-    it "is unsuccessful for guest user" do
-      post :create, post_params
-      expect(response).to redirect_to(posts_path)
-    end
+      it "creates post" do
+        expect {
+          post :create,
+          post_params
+        }.to change(Post, :count).by(1)
+      end
 
-    it "does not create post for guest user" do
-      expect {
-        post :create,
-        post_params
-      }.to change(Post, :count).by(0)
+      it "renders :new if validation fails" do
+        post :create, { post: { title: nil, content: nil } }
+        expect(response).to render_template(:new)
+      end
     end
-
-    it "renders :new if validation fails" do
-      post :create, { post: { title: nil, content: nil } }, user_id: admin.id
-      expect(response).to render_template(:new)
-    end
-
   end
 end

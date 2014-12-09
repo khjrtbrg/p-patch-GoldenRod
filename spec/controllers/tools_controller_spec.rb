@@ -19,7 +19,7 @@ RSpec.describe ToolsController, :type => :controller do
 
   describe "GET #new" do
 
-    context "if guest user" do
+    context "if guest" do
       it "redirects" do
         get :new
         expect(response).to redirect_to(tools_path)
