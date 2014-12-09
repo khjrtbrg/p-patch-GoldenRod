@@ -159,11 +159,11 @@ RSpec.describe ToolsController, :type => :controller do
           expect(response).to redirect_to(tools_path)
         end
 
-        # it "updates a tool object" do
-        #   patch :update, { id: tool.id }
-        #   tool.reload
-        #   expect(tool.user_id).to eq user.id
-        # end
+        it "updates a tool object" do
+          patch :update, { id: borrowed_tool.id }
+          borrowed_tool.reload
+          expect(borrowed_tool.user_id).to eq nil
+        end
       end
     end
   end

@@ -32,11 +32,20 @@ class ToolsController < ApplicationController
 
   def update
     tool = Tool.find(params[:id])
-    if tool.update(user_id: current_user.id)
-      redirect_to tools_path
-    else
-      render :index
-      # add flash message
+    if tool.user_id # if tool is being returned
+      if tool.update(user_id: nil)
+        redirect_to tools_path
+      else
+        render :index
+        # add flash message
+      end
+    else # if tool is being checked out
+      if tool.update(user_id: current_user.id)
+        redirect_to tools_path
+      else
+        render :index
+        # add flash message
+      end
     end
   end
 
