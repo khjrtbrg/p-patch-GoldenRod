@@ -23,4 +23,11 @@ FactoryGirl.define do
       user_id 123
     end
   end
+
+  factory :post do
+    title "Compost Bonanza"
+    content "blah blah blah blah blah"
+    user_id 123
+    # admin - creates an assocation with the admin
+  end
 end
