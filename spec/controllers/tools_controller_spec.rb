@@ -129,21 +129,41 @@ RSpec.describe ToolsController, :type => :controller do
   describe "PATCH #update" do
 
     let(:tool) { create(:tool) }
+    let(:borrowed_tool) { create(:borrowed_tool) }
+
+    context "if guest" do
+      # add tests for this!
+    end
 
     context "if logged in user" do
       before(:each) do
         session[:user_id] = user.id
       end
 
-      it "is successful" do
-        patch :update, { id: tool.id }
-        expect(response).to redirect_to(tools_path)
+      context "if borrowing tool" do
+        it "is successful" do
+          patch :update, { id: tool.id }
+          expect(response).to redirect_to(tools_path)
+        end
+
+        it "updates a tool object" do
+          patch :update, { id: tool.id }
+          tool.reload
+          expect(tool.user_id).to eq user.id
+        end
       end
 
-      it "updates a tool object" do
-        patch :update, { id: tool.id }
-        tool.reload
-        expect(tool.user_id).to eq user.id
+      context "if returning tool" do
+        it "is successful" do
+          patch :update, { id: borrowed_tool.id }
+          expect(response).to redirect_to(tools_path)
+        end
+
+        # it "updates a tool object" do
+        #   patch :update, { id: tool.id }
+        #   tool.reload
+        #   expect(tool.user_id).to eq user.id
+        # end
       end
     end
   end
