@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Tool, :type => :model do
 
-  describe "Tool.create" do
+  describe ".create" do
     it "is valid" do
       tool = Tool.create(
         name: "Shovel",
@@ -40,5 +40,30 @@ RSpec.describe Tool, :type => :model do
     #   )
     #   expect(tool.valid?).to eq false
     # end
+  end
+
+  let(:tool) { create(:tool) }
+  let(:borrowed_tool) { create(:borrowed_tool) }
+  let(:user) { create(:user) }
+
+  describe "#checked_out_by?" do
+    context "tool checked out by user" do
+      it "returns true" do
+        borrowed_tool.update(user_id: user.id)
+        expect(borrowed_tool.checked_out_by?(user)).to eq true
+      end
+    end
+
+    context "tool not checked out by user" do
+      it "returns false" do
+        expect(borrowed_tool.checked_out_by?(user)).to eq false
+      end
+    end
+
+    context "user is nil" do
+      it "returns nil" do
+        expect(borrowed_tool.checked_out_by?(nil)).to eq nil
+      end
+    end
   end
 end
