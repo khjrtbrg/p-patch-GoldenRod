@@ -66,4 +66,14 @@ RSpec.describe Tool, :type => :model do
       end
     end
   end
+
+  describe "#unavailable?" do
+    it "returns true if checked out" do
+      expect(borrowed_tool.unavailable?).to eq true
+    end
+
+    it "returns false if not checked out" do
+      expect(tool.unavailable?).to eq false 
+    end
+  end
 end
