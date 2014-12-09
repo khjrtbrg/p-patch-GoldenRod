@@ -27,6 +27,9 @@ class PostsController < ApplicationController
     # create invalid post and inspect @post!!
   end
 
+  def show
+  end
+
   private
 
   def post_params
