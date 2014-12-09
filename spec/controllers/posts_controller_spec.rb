@@ -118,4 +118,19 @@ RSpec.describe PostsController, :type => :controller do
       end
     end
   end
+
+  describe "GET #show" do
+
+    let!(:post) { create(:post) }
+
+    it "is successful" do
+      get :show, id: post.id
+      expect(response.status).to eq 200
+    end
+
+    it "renders the :show template" do
+      get :show, id: post.id
+      expect(response).to render_template(:show)
+    end
+  end
 end
