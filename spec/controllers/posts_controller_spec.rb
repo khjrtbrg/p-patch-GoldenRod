@@ -2,20 +2,8 @@ require 'rails_helper'
 
 RSpec.describe PostsController, :type => :controller do
 
-  let(:user) { User.create( # creates a functional variable 'user'
-    user_name: "kristen",
-    email: "k@m.com",
-    password: "hello",
-    password_confirmation: "hello"
-  )}
-
-  let(:admin) { User.create( # creates a functional variable 'user'
-    user_name: "kristen",
-    email: "k@m.com",
-    password: "hello",
-    password_confirmation: "hello",
-    admin: true
-  )}
+  let!(:user) { create(:user) }
+  let!(:admin) { create(:admin) }
 
   describe "GET #index" do
     it "is successful" do
