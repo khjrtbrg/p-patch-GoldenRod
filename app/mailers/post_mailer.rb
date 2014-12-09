@@ -1,5 +1,5 @@
 class PostMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: ENV["MAIL_USERNAME"]
 
   def new_post_alert(user, post)
     @user    = user # this scopes to the mailer view
