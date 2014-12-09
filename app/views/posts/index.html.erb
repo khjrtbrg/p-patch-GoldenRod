@@ -8,7 +8,7 @@
   <div class="container">
     <div class="post-wrapper">
       <article>
-        <h2><%= post.title %></h2>
+        <h2><%= link_to post.title, post_path(post.id) %></h2>
         <h3><%= post.user.user_name %></h3>
         <h4><%= post.pretty_updated_at %></h4>
         <p><%= post.content %></p>
