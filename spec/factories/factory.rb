@@ -18,5 +18,9 @@ FactoryGirl.define do
   factory :tool do
     name "Shovel"
     image_url "http://www.tool.com/tool.jpg"
+
+    factory :borrowed_tool do
+      user_id 123
+    end
   end
 end
