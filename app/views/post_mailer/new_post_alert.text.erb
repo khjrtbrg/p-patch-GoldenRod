@@ -1,4 +1,4 @@
-News @ Tendril: <%= @post.title %>
+News @ Tendril: <%= link_to @post.title, post_url(@post.id) %>
 
 <%= @post.content %>
 
