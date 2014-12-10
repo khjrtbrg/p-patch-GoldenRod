@@ -116,6 +116,15 @@ RSpec.describe PostsController, :type => :controller do
         post :create, { post: { title: nil, content: nil } }
         expect(response).to render_template(:new)
       end
+
+      describe "mailer" do
+        it "successfully sends" do
+          expect {
+            post :create,
+            post_params
+          }.to change(ActionMailer::Base.deliveries, :count).by(User.count)
+        end
+      end
     end
   end
 
