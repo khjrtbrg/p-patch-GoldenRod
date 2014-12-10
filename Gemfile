@@ -51,3 +51,5 @@ gem 'simplecov', :require => false, :group => :test
 gem 'rails_12factor', group: :production
 
 gem 'bootstrap_form'
+
+gem 'httparty'
