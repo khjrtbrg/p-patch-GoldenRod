@@ -6,7 +6,7 @@ class Weather
     @description = weather["weather"][0]["description"]
     @icon        = weather["weather"][0]["icon"]
     @humidity    = weather["main"]["humidity"]
-    @temp        = weather["main"]["temp"]
+    @temp        = convert_temp_to_f(weather["main"]["temp"])
   end
 
   # Returns Seattle weather as JSON
@@ -18,11 +18,21 @@ class Weather
     request("weather")
   end
 
-  def forecast
-    request("forecast")
+  def convert_temp_to_f(temp)
+    ((temp - 273.15) * 1.8000 + 32.00).to_i
   end
 
-  def convert_temp_to_f
-  end
+  ## forecast ideas?
+
+  # def forecast
+  #   request("forecast")
+  # end
+
+  # def self.forecast
+  #   # get array of forecasts
+  #   # each loop through array
+  #   # creating Weather objects for each day
+  #   # return array of weather objects
+  # end
 
 end
