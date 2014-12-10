@@ -56,24 +56,22 @@ RSpec.describe PostsController, :type => :controller do
 
   describe "POST #create" do
 
-    let(:post_params) { { "post"=> {
-      title: "Best post ever",
-      content: "Best content ever",
+    let(:request) { post :create, {
+        post: {
+          title: "Best post ever",
+          content: "Best content ever",
         }
       }
     }
 
     context "if guest" do
       it "is unsuccessful" do
-        post :create, post_params
+        request
         expect(response).to redirect_to(posts_path)
       end
 
       it "does not create post" do
-        expect {
-          post :create,
-          post_params
-        }.to change(Post, :count).by(0)
+        expect { request }.to change(Post, :count).by(0)
       end
     end
 
@@ -83,15 +81,12 @@ RSpec.describe PostsController, :type => :controller do
       end
 
       it "is unsuccessful" do
-        post :create, post_params
+        request
         expect(response).to redirect_to(posts_path)
       end
 
       it "does not create post" do
-        expect {
-          post :create,
-          post_params
-        }.to change(Post, :count).by(0)
+        expect { request }.to change(Post, :count).by(0)
       end
     end
 
@@ -101,15 +96,12 @@ RSpec.describe PostsController, :type => :controller do
       end
 
       it "is successful" do
-        post :create, post_params
+        request
         expect(response).to redirect_to(posts_path)
       end
 
       it "creates post" do
-        expect {
-          post :create,
-          post_params
-        }.to change(Post, :count).by(1)
+        expect { request }.to change(Post, :count).by(1)
       end
 
       it "renders :new if validation fails" do
@@ -119,10 +111,7 @@ RSpec.describe PostsController, :type => :controller do
 
       describe "mailer" do
         it "successfully sends" do
-          expect {
-            post :create,
-            post_params
-          }.to change(ActionMailer::Base.deliveries, :count).by(User.count)
+          expect { request }.to change(ActionMailer::Base.deliveries, :count).by(User.count)
         end
       end
     end
@@ -131,14 +120,15 @@ RSpec.describe PostsController, :type => :controller do
   describe "GET #show" do
 
     let!(:post) { create(:post) }
+    let(:request) { get :show, id: post.id }
 
     it "is successful" do
-      get :show, id: post.id
+      request
       expect(response.status).to eq 200
     end
 
     it "renders the :show template" do
-      get :show, id: post.id
+      request
       expect(response).to render_template(:show)
     end
   end
