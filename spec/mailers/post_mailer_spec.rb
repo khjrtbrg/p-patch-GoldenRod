@@ -7,18 +7,23 @@ RSpec.describe PostMailer, :type => :mailer do
     let!(:user) { create(:user) }
 
     before(:each) do
-      ActionMailer::Base.delivery_method = :test
-      ActionMailer::Base.perform_deliveries = true
-      ActionMailer::Base.deliveries = []
       PostMailer.new_post_alert(user, post).deliver
-    end
-
-    after(:each) do
-      ActionMailer::Base.deliveries.clear
     end
 
     it "successfully sends" do
       expect(ActionMailer::Base.deliveries.count).to eq 1
+    end
+
+    it "sends to correct user" do
+      expect(ActionMailer::Base.deliveries.last.to).to eq [user.email]
+    end
+
+    it "sends from the correct user" do
+      expect(ActionMailer::Base.deliveries.last.from).to eq [ENV["MAIL_USERNAME"]]
+    end
+
+    it "sends with correct subject line" do
+      expect(ActionMailer::Base.deliveries.last.subject).to eq "News @ Tendril: #{post.title}"
     end
   end
 end
