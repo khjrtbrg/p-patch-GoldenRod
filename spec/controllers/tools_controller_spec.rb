@@ -56,24 +56,29 @@ RSpec.describe ToolsController, :type => :controller do
 
   describe "POST #create" do
 
-    let(:tool_params) { { "tool"=> {
-      name: "Best tool ever",
-      image_url: "http://www.tool.com/tool.jpg",
+    let(:request) { post :create, {
+        tool: {
+          name: "Best tool ever",
+          image_url: "http://www.tool.com/tool.jpg",
         }
       }
     }
 
+    # let(:tool_params) { { "tool"=> {
+    #   name: "Best tool ever",
+    #   image_url: "http://www.tool.com/tool.jpg",
+    #     }
+    #   }
+    # }
+
     context "if guest user" do
       it "is unsuccessful" do
-        post :create, tool_params
+        request
         expect(response).to redirect_to(tools_path)
       end
 
       it "does not create tool" do
-        expect {
-          post :create,
-          tool_params
-        }.to change(Tool, :count).by(0)
+        expect { request }.to change(Tool, :count).by(0)
       end
     end
 
@@ -83,15 +88,12 @@ RSpec.describe ToolsController, :type => :controller do
       end
 
       it "is unsuccessful" do
-        post :create, tool_params
+        request
         expect(response).to redirect_to(tools_path)
       end
 
       it "does not create tool" do
-        expect {
-          post :create,
-          tool_params
-        }.to change(Tool, :count).by(0)
+        expect { request }.to change(Tool, :count).by(0)
       end
     end
 
@@ -101,15 +103,12 @@ RSpec.describe ToolsController, :type => :controller do
       end
 
       it "is successful" do
-        post :create, tool_params
+        request
         expect(response).to redirect_to(tools_path)
       end
 
       it "creates tool" do
-        expect {
-          post :create,
-          tool_params
-        }.to change(Tool, :count).by(1)
+        expect { request }.to change(Tool, :count).by(1)
       end
 
       it "renders :new if validation fails" do
