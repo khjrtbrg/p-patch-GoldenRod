@@ -36,4 +36,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # So RSPEC knows the base URL for emails
+  config.action_mailer.default_url_options = { host: 'http://localhost:3000' }
 end
