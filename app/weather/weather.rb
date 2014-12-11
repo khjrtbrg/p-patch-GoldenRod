@@ -1,9 +1,9 @@
 class Weather
-  attr_accessor :description, :icon, :humidity, :temp
+  attr_accessor :date_time, :description, :icon, :humidity, :temp
 
   def initialize(weather_data)
     weather      = weather_data
-    @date_time   = Time.at(weather["dt"])
+    @date_time   = Time.at(weather["dt"]).strftime("%A")
     @description = weather["weather"][0]["description"]
     @icon        = "http://openweathermap.org/img/w/#{weather['weather'][0]['icon']}.png"
     @humidity    = weather["main"]["humidity"]
@@ -24,7 +24,7 @@ class Weather
     forecasts = forecast_data.select do |weather_hash|
       weather_hash["dt_txt"].match(/12:00:00/)
     end
-    forecasts.map { |weather_hash| Weather.new(weather_hash) }
+    forecasts[0..2].map { |weather_hash| Weather.new(weather_hash) }
   end
 
   def convert_temp_to_f(temp)

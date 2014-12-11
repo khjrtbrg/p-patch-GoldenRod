@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @weather = Weather.new
+    @weather   = Weather.current_weather
+    @forecasts = Weather.forecast
   end
 end
