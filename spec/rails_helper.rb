@@ -26,6 +26,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
 
+  # We added this to allow us to call let!(:user) { create(:user) }
   config.include FactoryGirl::Syntax::Methods
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
