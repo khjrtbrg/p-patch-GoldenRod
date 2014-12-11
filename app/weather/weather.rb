@@ -4,7 +4,7 @@ class Weather
   def initialize
     weather      = current_weather
     @description = weather["weather"][0]["description"]
-    @icon        = weather["weather"][0]["icon"]
+    @icon        = "http://openweathermap.org/img/w/#{weather['weather'][0]['icon']}.png"
     @humidity    = weather["main"]["humidity"]
     @temp        = convert_temp_to_f(weather["main"]["temp"])
   end

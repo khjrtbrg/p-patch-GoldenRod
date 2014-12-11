@@ -1,3 +1,15 @@
 <h1>Welcome</h1>
-  <p>Weather goes here</p>
-  <p>Forecast goes here</p>
+
+  <div class="row">
+    <div class="weather">
+      <h2>Current Weather</h2>
+      <p><%= image_tag @weather.icon %></p>
+      <p><strong><%= @weather.description.titleize %></strong></p>
+      <p>Temperature: <%= @weather.temp %>° F</p>
+      <p>Humidity: <%= @weather.humidity %>%</p>
+    </div>
+
+    <div class="weather">
+      <h2>Forecast</h2>
+    </div>
+  </div>
