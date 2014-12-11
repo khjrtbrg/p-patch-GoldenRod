@@ -1,25 +1,27 @@
-<h1>Welcome</h1>
+<div class="row">
+  <%= image_tag "forest.jpg", class: "home-img" %>
+</div>
 
-  <div class="row">
-    <div class="current-weather col-sm-4">
-      <div class="weather">
-        <h3>Today</h3>
-        <p><%= image_tag @weather.icon %></p>
-        <p><strong><%= @weather.description.titleize %></strong></p>
-        <p>Temperature: <%= @weather.temp %>° F</p>
-        <p>Humidity: <%= @weather.humidity %>%</p>
-      </div>
-    </div>
-
-    <div class="forecast-weather col-sm-8">
-      <% @forecasts.each do |forecast| %>
-        <div class="weather col-sm-4">
-          <h3><%= forecast.date_time %></h3>
-          <p><%= image_tag forecast.icon %></p>
-          <p><strong><%= forecast.description.titleize %></strong></p>
-          <p>Temperature: <%= forecast.temp %>° F</p>
-          <p>Humidity: <%= forecast.humidity %>%</p>
-        </div>
-      <% end %>
+<div class="row weather-container">
+  <div class="current-weather col-sm-4">
+    <div class="weather">
+      <h3>Today</h3>
+      <p><%= image_tag @weather.icon %></p>
+      <p><strong><%= @weather.description.titleize %></strong></p>
+      <p>Temperature: <%= @weather.temp %>° F</p>
+      <p>Humidity: <%= @weather.humidity %>%</p>
     </div>
   </div>
+
+  <div class="forecast-weather col-sm-8">
+    <% @forecasts.each do |forecast| %>
+      <div class="weather col-xs-4">
+        <h3><%= forecast.date_time %></h3>
+        <p><%= image_tag forecast.icon %></p>
+        <p><strong><%= forecast.description.titleize %></strong></p>
+        <p>Temperature: <%= forecast.temp %>° F</p>
+        <p>Humidity: <%= forecast.humidity %>%</p>
+      </div>
+    <% end %>
+  </div>
+</div>

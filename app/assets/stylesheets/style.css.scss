@@ -10,6 +10,27 @@ nav.navbar .btn {
   margin-top: 8px;
 }
 
+.home-img {
+  width: 100%;
+}
+
+.weather-container {
+  margin-bottom: 1.5em;
+}
+
+.current-weather,
+.forecast-weather{
+  padding: 4em 0;
+}
+
+.current-weather {
+  background-color: lightgrey;
+}
+
+.forecast-weather{
+  background-color: whitesmoke;
+}
+
 .tool-img {
   width: 50%;
 }
