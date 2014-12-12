@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   # Associations
   has_many :posts
   has_many :tools
+  has_many :events
 
   # Validations
   validates :user_name,
