@@ -7,3 +7,60 @@
 <% @events.each do |event| %>
   <p><%= event.date %></p>
 <% end %>
+
+<!-- <div class="month">
+  <div class="week">
+    <div class="day-name day">
+      Sunday
+    </div>
+    <div class="day-name day">
+      Monday
+    </div>
+    <div class="day-name day">
+      Tuesday
+    </div>
+    <div class="day-name day">
+      Wednesday
+    </div>
+    <div class="day-name day">
+      Thursday
+    </div>
+    <div class="day-name day">
+      Friday
+    </div>
+    <div class="day-name day">
+      Saturday
+    </div>
+  </div>
+  <div class="week">
+    <div class="day">
+      1
+    </div>
+    <div class="day">
+
+    </div>
+    <div class="day">
+
+    </div>
+    <div class="day">
+
+    </div>
+    <div class="day">
+
+    </div>
+    <div class="day">
+
+    </div>
+    <div class="day">
+
+    </div>
+  </div>
+</div> -->
+
+<% counter = 1 %>
+<% Event.number_of_days.times do %>
+  <div class="day">
+    <%= counter %>
+  </div>
+  <% counter += 1 %>
+<% end %>

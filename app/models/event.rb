@@ -17,4 +17,8 @@ class Event < ActiveRecord::Base
   def self.end_month
     Date.today.at_end_of_month
   end
+
+  def self.number_of_days
+    end_month.day
+  end
 end
