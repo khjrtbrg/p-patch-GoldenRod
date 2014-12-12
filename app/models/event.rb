@@ -4,4 +4,6 @@ class Event < ActiveRecord::Base
 
   # Validations
   validates :title, presence: true
+
+  validates :date, presence: true
 end
