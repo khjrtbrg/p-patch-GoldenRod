@@ -8,6 +8,10 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
+  def create
+    redirect_to events_path
+  end
+
   private
 
   def find_user
