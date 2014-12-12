@@ -22,17 +22,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # if @admin
-  #   @tool = Tool.new(tools_params)
-  #   if @tool.save
-  #     redirect_to tools_path
-  #   else
-  #     render :new
-  #   end
-  # else
-  #   redirect_to tools_path
-  # end
-
 
   private
 

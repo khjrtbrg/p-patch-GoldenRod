@@ -10,37 +10,14 @@
 
 
 <div class="month">
-  <div class="day-name">
-    Sunday
-  </div>
-  <div class="day-name">
-    Monday
-  </div>
-  <div class="day-name">
-    Tuesday
-  </div>
-  <div class="day-name">
-    Wednesday
-  </div>
-  <div class="day-name">
-    Thursday
-  </div>
-  <div class="day-name">
-    Friday
-  </div>
-  <div class="day-name">
-    Saturday
-  </div>
+  <div class="day-name">Sunday</div>
+  <div class="day-name">Monday</div>
+  <div class="day-name">Tuesday</div>
+  <div class="day-name">Wednesday</div>
+  <div class="day-name">Thursday</div>
+  <div class="day-name">Friday</div>
+  <div class="day-name">Saturday</div>
 
-  <% Event.start_month.day.times do %>
-    <div class="day no-color"></div>
-  <% end %>
-
-  <% counter = 1 %>
-  <% Event.number_of_days.times do %>
-    <div class="day">
-      <%= counter %>
-    </div>
-    <% counter += 1 %>
-  <% end %>
+  <%= generate_offset_days %>
+  <%= generate_month_days(@events) %>
 </div>
