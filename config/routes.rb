@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   get  "tools/:id",  to: "tools#show",       as: :tool
   patch "tools/:id", to: "tools#update"
 
+  # Events Routes
+  get "events",      to: "events#index",     as: :events 
+
   root "home#index"
 
   # For Reference
