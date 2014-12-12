@@ -10,6 +10,10 @@ nav.navbar .btn {
   margin-top: 8px;
 }
 
+.main {
+  padding-bottom: 5px;
+}
+
 .home-img {
   width: 100%;
 }
@@ -70,12 +74,16 @@ span.green {
   text-align: left;
 }
 
+.day:hover {
+  background-color: lightcyan;
+}
+
 .day span {
   padding-left: 5px;
   font-weight: bold;
 }
 
-.offset-day {
+.offset-day, .offset-day:hover {
   background-color: white;
 }
 
