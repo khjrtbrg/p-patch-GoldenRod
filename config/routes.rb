@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   # Events Routes
   get  "events",     to: "events#index",     as: :events
   get  "events/new", to: "events#new",       as: :new_event
-  post "event",      to: "events#create"
+  post "events",     to: "events#create"
 
   root "home#index"
 
