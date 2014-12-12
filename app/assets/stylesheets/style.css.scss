@@ -64,14 +64,21 @@ span.green {
   display: inline-block;
   width: 100px;
   height: 100px;
-  border: 1px black solid;
+  margin: 1px;
   float:left;
+  background-color: lightgrey;
+  text-align: left;
+}
+
+.no-color {
+  background-color: white;
 }
 
 .day-name {
   display: inline-block;
   width: 100px;
   float: left;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 767px) {
