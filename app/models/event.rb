@@ -6,11 +6,15 @@ class Event < ActiveRecord::Base
   validates :title, :date, :user_id, presence: true
 
   # Methods
-  def current_month
-    @month = Date.today.month
+  def self.events_this_month
+    Event.where(date: (start_month..end_month))
   end
 
-  def current_year
-    @year = Date.today.year
+  def self.start_month
+    Date.today.at_beginning_of_month
+  end
+
+  def self.end_month
+    Date.today.at_end_of_month
   end
 end
