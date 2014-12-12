@@ -24,7 +24,8 @@ Rails.application.routes.draw do
   patch "tools/:id", to: "tools#update"
 
   # Events Routes
-  get "events",      to: "events#index",     as: :events 
+  get "events",      to: "events#index",     as: :events
+  get "events/new",  to: "events#new",       as: :new_event
 
   root "home#index"
 
