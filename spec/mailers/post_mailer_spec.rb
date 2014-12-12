@@ -8,7 +8,7 @@ RSpec.describe PostMailer, :type => :mailer do
     let!(:mailer) { PostMailer.new_post_alert(user, post) }
 
     it "includes the correct recipient" do
-      expect(mailer.to).to include user.email
+      expect(mailer.bcc).to include user.email
     end
 
     it "includes the correct sender" do
