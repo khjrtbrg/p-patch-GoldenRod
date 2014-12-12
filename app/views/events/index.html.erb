@@ -3,3 +3,7 @@
 <% if @user %>
   <%= link_to "Add Event", new_event_path %>
 <% end %>
+
+<% @events.each do |event| %>
+  <p><%= event.date %></p>
+<% end %>

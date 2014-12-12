@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :find_user
 
   def index
-    @events = Event.all
+    @events = Event.events_this_month
   end
 
   def new
