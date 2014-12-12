@@ -29,8 +29,37 @@ RSpec.describe EventsController, :type => :controller do
   describe "POST #create" do
 
     let!(:user) { create(:user) }
-    let(:request) { post :create, attributes_for(:event) }
+    let(:request) { post :create, { event: {
+          title: "Best event ever",
+          description: "Mango madness",
+          location: "",
+          date: "December 12, 2014",
+          start_time: "",
+          end_time: ""
+        }
+      }
+    }
 
+    context "if user" do
+      before(:each) do
+        session[:user_id] = user.id
+      end
+
+      it "is successful" do
+        request
+        expect(response).to redirect_to(events_path)
+      end
+
+      it "creates event" do
+        expect { request }.to change(Event, :count).by(1)
+      end
+    #
+    #   it "renders :new if validation fails" do
+    #     post :create, { post: { title: nil, content: nil } }
+    #     expect(response).to render_template(:new)
+    #   end
+
+    ###########
     # context "if guest" do
     #   it "is unsuccessful" do
     #     request
@@ -42,24 +71,7 @@ RSpec.describe EventsController, :type => :controller do
     #   end
     # end
     #
-    context "if user" do
-      before(:each) do
-        session[:user_id] = user.id
-      end
 
-      it "is successful" do
-        request
-        expect(response).to redirect_to(events_path)
-      end
-
-    #   it "creates post" do
-    #     expect { request }.to change(Post, :count).by(1)
-    #   end
-    #
-    #   it "renders :new if validation fails" do
-    #     post :create, { post: { title: nil, content: nil } }
-    #     expect(response).to render_template(:new)
-    #   end
     end
   end
 end
