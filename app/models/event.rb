@@ -3,7 +3,5 @@ class Event < ActiveRecord::Base
   belongs_to :user
 
   # Validations
-  validates :title, presence: true
-
-  validates :date, presence: true
+  validates :title, :date, :user_id, presence: true
 end

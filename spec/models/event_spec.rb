@@ -19,10 +19,14 @@ RSpec.describe Event, :type => :model do
       expect(invalid_event.invalid?).to eq true
     end
 
-  #  Event(id: integer,  description: text,
-  #  location: string, date: date, start_time: time,
-  #  end_time: time, user_id: integer, created_at: datetime,
-  #  updated_at: datetime)
+    it "is invalid with improperly formatted date" do
+      invalid_event = build(:event, date: "fish") # this will fail w/ create
+      expect(invalid_event.invalid?).to eq true
+    end
 
+    it "is invalid without user_id" do
+      invalid_event = build(:event, user_id: "") # this will fail w/ create
+      expect(invalid_event.invalid?).to eq true
+    end
   end
 end
