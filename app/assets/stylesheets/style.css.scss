@@ -72,6 +72,7 @@ span.green {
   float:left;
   background-color: lightgrey;
   text-align: left;
+  padding: 5px;
 }
 
 .day:hover {
@@ -79,7 +80,6 @@ span.green {
 }
 
 .day span {
-  padding-left: 5px;
   font-weight: bold;
 }
 
