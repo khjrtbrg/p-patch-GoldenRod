@@ -40,6 +40,17 @@ RSpec.describe EventsController, :type => :controller do
       }
     }
 
+    context "if guest" do
+      it "is unsuccessful" do
+        request
+        expect(response).to redirect_to(events_path)
+      end
+      
+      it "does not create event" do
+        expect { request }.to change(Event, :count).by(0)
+      end
+    end
+
     context "if user" do
       before(:each) do
         session[:user_id] = user.id
@@ -53,25 +64,11 @@ RSpec.describe EventsController, :type => :controller do
       it "creates event" do
         expect { request }.to change(Event, :count).by(1)
       end
-    #
-    #   it "renders :new if validation fails" do
-    #     post :create, { post: { title: nil, content: nil } }
-    #     expect(response).to render_template(:new)
-    #   end
 
-    ###########
-    # context "if guest" do
-    #   it "is unsuccessful" do
-    #     request
-    #     expect(response).to redirect_to(posts_path)
-    #   end
-    #
-    #   it "does not create post" do
-    #     expect { request }.to change(Post, :count).by(0)
-    #   end
-    # end
-    #
-
+      it "renders :new if validation fails" do
+        post :create, { event: { title: "" } }
+        expect(response).to render_template(:new)
+      end
     end
   end
 end
