@@ -13,4 +13,16 @@ RSpec.describe EventsController, :type => :controller do
       expect(response).to render_template(:index)
     end
   end
+
+  describe "GET #new" do
+    it "is successful" do
+      get :new
+      expect(response.status).to eq 200
+    end
+
+    it "renders the :new template" do
+      get :new
+      expect(response).to render_template(:new)
+    end
+  end
 end
