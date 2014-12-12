@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :find_user
 
   def index
+    @events = Event.all
   end
 
   def new
