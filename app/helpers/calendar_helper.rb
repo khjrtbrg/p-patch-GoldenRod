@@ -12,7 +12,7 @@ module CalendarHelper
     string = ""
     counter = 1
     Event.days_in_month.times do
-      string << "<div class='day'>#{counter}</div>\n"
+      string << "<div class='day'><span>#{counter}</span></div>\n"
       counter += 1
     end
     string.html_safe
