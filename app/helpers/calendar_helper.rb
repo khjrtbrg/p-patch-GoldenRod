@@ -8,6 +8,11 @@ module CalendarHelper
     string.html_safe
   end
 
+  def event_days(events)
+    events.pluck(:date).map { |date| date.day }
+  end
+
+  # start here
   def generate_month_days(events)
     days = event_days(events)
     string = ""
@@ -21,10 +26,6 @@ module CalendarHelper
       counter += 1
     end
     string.html_safe
-  end
-
-  def event_days(events)
-    events.pluck(:date).map { |date| date.day }
   end
 
   def generate_event_details(events)
