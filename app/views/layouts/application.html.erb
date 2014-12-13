@@ -47,9 +47,11 @@
   </nav>
 
   <!-- Header -->
-  <header>
-    <%= render "layouts/slider" %>
-  </header>
+  <% if @homepage %>
+    <header>
+      <%= render "layouts/slider" %>
+    </header>
+  <% end %>
 
   <!-- Page Content -->
   <div class="container">
