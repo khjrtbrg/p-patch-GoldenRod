@@ -3,5 +3,6 @@ class HomeController < ApplicationController
     @homepage  = true
     @weather   = Weather.current_weather
     @forecasts = Weather.forecast
+    render :layout => "homepage"
   end
 end
