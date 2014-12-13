@@ -1,0 +1,16 @@
+<div class="modal fade" id="event-<%= event.date.day %>" tabindex="-1" role="dialog" aria-labelledby="eventDetailModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="eventDetail"><%= event.title %></h4>
+      </div>
+      <div class="modal-body">
+        <p><strong>Starts At:</strong> <%= time_formatter(event.start_time) %></p>
+        <p><strong>Ends At:</strong> <%= time_formatter(event.end_time) %></p>
+        <p><strong>Location:</strong> <%= event.location %></p>
+        <p><strong>Description:</strong> <%= event.description %></p>
+      </div>
+    </div>
+  </div>
+</div>

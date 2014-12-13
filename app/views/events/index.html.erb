@@ -13,9 +13,18 @@
   <div class="day-name">Friday</div>
   <div class="day-name">Saturday</div>
 
-  <%= generate_offset_days %>
-  <%= generate_month_days(@events) %>
+  <% @events.each do |event| %>
+    <% if event.offset %>
+      <div class='day offset-day'></div>
+    <% elsif event.events %>
+      <div class='day'><span><%= event.date_number %></span><p><a href='#' data-toggle='modal' data-target='#event-<%= event.date_number %>'>Events Today!</a></p></div>
+    <% else %>
+        <div class='day'><span><%= event.date_number %></span></div>
+    <% end %>
+  <% end %>
 </div>
 
 <!-- Event Modals -->
-<%= generate_event_details(@events) %>
+<% @event_details.each do |event| %>
+  <%= render "modal", event: event %>
+<% end %>
