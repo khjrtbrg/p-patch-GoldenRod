@@ -26,4 +26,8 @@ class Event < ActiveRecord::Base
   def self.start_days_offset
     start_month.cwday
   end
+
+  def self.event_days_array
+    events_this_month.pluck(:date).map { |date| date.day }
+  end
 end
