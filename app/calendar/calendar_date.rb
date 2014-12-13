@@ -20,7 +20,7 @@ class CalendarDate
     array
   end
 
-  def self.generate_events(counter, events)
+  def self.find_events(counter, events)
     iteration_date = Date.parse("#{counter}/#{Event.start_month.month}/#{Event.start_month.year}")
     events.where(date: iteration_date)
   end
@@ -32,7 +32,7 @@ class CalendarDate
     counter = 1
     Event.days_in_month.times do
       if days.include?(counter)
-        day_events = generate_events(counter, events)
+        day_events = find_events(counter, events)
         array << CalendarDate.new(counter, day_events, false)
       else
         array << CalendarDate.new(counter, nil, false)
