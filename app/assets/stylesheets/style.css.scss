@@ -95,7 +95,7 @@ span.green {
 }
 
 .day:hover {
-  background-color: lightcyan;
+  background-color: rgb(215, 209, 154);
 }
 
 .day span {
@@ -137,7 +137,11 @@ span.green {
   .navbar-inverse .navbar-collapse,
   .navbar-inverse .navbar-form {
     border-color: palegoldenrod;
-    background-color: lightgrey;
+    background-color: rgb(215, 209, 154);
     text-align: center;
+  }
+
+  .forecast-weather {
+    height: 350px;
   }
 }
