@@ -81,6 +81,7 @@ span.green {
 
 .day span {
   font-weight: bold;
+  padding-left: 2px;
 }
 
 .offset-day, .offset-day:hover {
@@ -97,6 +98,16 @@ span.green {
 
 .modal-backdrop.fade.in {
   z-index: -100;
+}
+
+.modal strong {
+  width: 100px;
+  float: left;
+}
+
+.modal .modal-body {
+  width: 75%;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 767px) {
