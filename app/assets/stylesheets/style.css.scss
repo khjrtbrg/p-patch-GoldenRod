@@ -6,6 +6,11 @@ nav.navbar.navbar-inverse.navbar-fixed-top {
   // background-color: green;
 }
 
+nav .logo {
+  width: 30px;
+  margin-top: -5px;
+}
+
 nav.navbar .btn {
   margin-top: 8px;
 }
@@ -13,6 +18,10 @@ nav.navbar .btn {
 .main {
   padding-bottom: 5px;
 }
+
+/*.carousel.slide {
+  margin-top: -20px;
+}*/
 
 .home-img {
   width: 100%;
