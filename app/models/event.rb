@@ -30,4 +30,16 @@ class Event < ActiveRecord::Base
   def self.event_days_array
     events_this_month.pluck(:date).map { |date| date.day }
   end
+
+  def pretty_start_time
+    pretty_time(start_time)
+  end
+
+  def pretty_end_time
+    pretty_time(end_time)
+  end
+
+  def pretty_time(time)
+    time ? time.strftime('%l:%M%P') : "All Day"
+  end
 end
