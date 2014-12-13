@@ -95,6 +95,10 @@ span.green {
   font-weight: bold;
 }
 
+.modal-backdrop.fade.in {
+  z-index: -100;
+}
+
 @media screen and (max-width: 767px) {
   nav.navbar .btn {
     margin: 10px 15px;
