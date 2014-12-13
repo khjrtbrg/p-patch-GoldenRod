@@ -22,7 +22,8 @@ class Event < ActiveRecord::Base
     end_month.day
   end
 
+  # will return the index of the first day of the month
   def self.start_days_offset
-    start_month.day
+    start_month.cwday
   end
 end
