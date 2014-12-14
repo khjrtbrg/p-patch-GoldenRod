@@ -82,4 +82,18 @@ Rails.application.configure do
 
   # sets default for email base URLs
   config.action_mailer.default_url_options = { host: 'example.com' }
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.mandrillapp.com',
+    port:                 587,
+    domain:               'example.com',
+    user_name:            ENV["MAIL_USERNAME"],
+    password:             ENV["MAIL_PASSWORD"],
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
+  config.action_mailer.default_url_options = { host: 'http://ada-community-garden.herokuapp.com' }
 end
