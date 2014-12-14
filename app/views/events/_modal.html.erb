@@ -9,7 +9,7 @@
         <p><strong>Starts At:</strong> <%= event.pretty_start_time %></p>
         <p><strong>Ends At:</strong> <%= event.pretty_end_time %></p>
         <p><strong>Location:</strong> <%= event.location %></p>
-        <p><strong>Description:</strong> <%= event.description %></p>
+        <p><strong>Description:</strong> <%= simple_format(event.description) %></p>
       </div>
     </div>
   </div>
