@@ -3,8 +3,8 @@ body {
 }
 
 nav.navbar.navbar-inverse.navbar-fixed-top {
-  background-color: palegoldenrod;
-  border-color: palegoldenrod;
+  background-color: rgb(182, 93, 16);
+  border-color: rgb(182, 93, 16);
 }
 
 nav .logo {
@@ -15,25 +15,25 @@ nav .logo {
 .navbar-inverse .navbar-brand {
   font-family: 'Amatic SC', cursive;
   font-size: 2em;
-  color: black;
+  color: white;
 }
 
 .navbar-inverse .navbar-nav>li>a {
   font-family: 'Merriweather', serif;
-  color: black;
+  color: white;
 }
 
 .navbar-inverse .navbar-toggle {
-  border-color: palegoldenrod;
+  border-color: rgb(219, 184, 137);
 }
 
 .navbar-inverse .navbar-toggle .icon-bar {
-  background-color: black;
+  background-color: white;
 }
 
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-  background-color: white;
+  background-color: orange;
 }
 
 nav.navbar .btn {
@@ -54,11 +54,12 @@ nav.navbar .btn {
 }
 
 .current-weather {
-  background-color: lightgrey;
+  background-color: #3e7180;
+  color: rgb(238, 243, 249);
 }
 
 .forecast-weather{
-  background-color: whitesmoke;
+  background-color: rgb(210, 237, 245);
 }
 
 .tool-img {
@@ -102,7 +103,11 @@ span.green {
 }
 
 .day:hover {
-  background-color: rgb(215, 209, 154);
+  background-color: #3e7180;
+}
+
+.month a {
+  color: black;
 }
 
 .day span {
@@ -143,8 +148,8 @@ span.green {
 
   .navbar-inverse .navbar-collapse,
   .navbar-inverse .navbar-form {
-    border-color: palegoldenrod;
-    background-color: rgb(215, 209, 154);
+    border-color: #b65d10;
+    background-color: rgb(53, 45, 31);
     text-align: center;
   }
 
