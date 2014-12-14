@@ -40,6 +40,19 @@ nav.navbar .btn {
   margin-top: 8px;
 }
 
+.navbar-inverse .btn-link {
+  font-family: 'Merriweather', serif;
+  color: white;
+}
+
+.navbar-inverse .btn-link:hover, .btn-link:focus, .btn-link:active {
+  text-decoration: none;
+  background-image: none;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 .main {
   padding-bottom: 5px;
 }
@@ -63,7 +76,7 @@ nav.navbar .btn {
 }
 
 .forecast-weather{
-  background-color: rgb(210, 237, 245);
+  background-color: #B6D3DB;
 }
 
 .tool-img {
@@ -107,7 +120,7 @@ span.green {
 }
 
 .day:hover {
-  background-color: #3e7180;
+  background-color: #B6D3DB;
 }
 
 .month a {
