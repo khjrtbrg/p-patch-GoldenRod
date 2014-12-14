@@ -145,6 +145,10 @@ span.green {
   margin: 0 auto;
 }
 
+textarea {
+  max-width: 100%;
+}
+
 @media screen and (max-width: 767px) {
   nav.navbar .btn {
     margin: 10px 15px;

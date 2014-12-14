@@ -1,11 +1,11 @@
 <h1>Create New Event</h1>
 
 <%= bootstrap_form_for(@event)  do |f| %>
-  <%= f.text_field :title,       value: @event.title       %>
-  <%= f.date_field :date,        value: @event.date        %>
-  <%= f.time_field :start_time,  value: @event.start_time  %>
-  <%= f.time_field :end_time,    value: @event.end_time    %>
-  <%= f.text_area  :description, value: @event.description %>
-  <%= f.text_field :location,    value: @event.location    %>
+  <%= f.text_field :title,       value: @event.title                %>
+  <%= f.date_field :date,        value: @event.date                 %>
+  <%= f.time_field :start_time,  value: @event.start_time           %>
+  <%= f.time_field :end_time,    value: @event.end_time             %>
+  <%= f.text_area  :description, value: @event.description, rows: 5 %>
+  <%= f.text_field :location,    value: @event.location             %>
   <%= f.submit %>
 <% end %>
