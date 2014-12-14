@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   post "tools",      to: "tools#create"
   get  "tools/:id",  to: "tools#show",       as: :tool
   patch "tools/:id", to: "tools#update"
-  post  "tools/:id", to: "tools#update"
 
   # Events Routes
   get  "events",     to: "events#index",     as: :events
