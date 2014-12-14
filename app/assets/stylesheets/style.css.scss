@@ -12,6 +12,17 @@ nav .logo {
   margin-top: -5px;
 }
 
+.navbar-inverse .navbar-brand {
+  font-family: 'Amatic SC', cursive;
+  font-size: 2em;
+  color: black;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  font-family: 'Merriweather', serif;
+  color: black;
+}
+
 .navbar-inverse .navbar-toggle {
   border-color: palegoldenrod;
 }
