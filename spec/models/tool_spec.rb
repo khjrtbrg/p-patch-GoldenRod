@@ -9,25 +9,27 @@ RSpec.describe Tool, :type => :model do
       expect(tool.valid?).to eq true
     end
 
-    it "is invalid without name" do
-      invalid_tool = build(:tool, name: "")
-      expect(invalid_tool.invalid?).to eq true
-    end
+    context "is invalid" do
+      it "without name" do
+        invalid_tool = build(:tool, name: "")
+        expect(invalid_tool.invalid?).to eq true
+      end
 
-    it "is invalid without image_url" do
-      invalid_tool = build(:tool, image_url: "")
-      expect(invalid_tool.invalid?).to eq true
-    end
+      it "without image_url" do
+        invalid_tool = build(:tool, image_url: "")
+        expect(invalid_tool.invalid?).to eq true
+      end
 
-    it "is invalid if image_url is not web address" do
-      invalid_tool = build(:tool, image_url: "foo")
-      expect(invalid_tool.invalid?).to eq true
-    end
+      it "if image_url is not web address" do
+        invalid_tool = build(:tool, image_url: "foo")
+        expect(invalid_tool.invalid?).to eq true
+      end
 
     # it "is invalid if image_url is not valid web address" do
     #   tool = build(:tool, image_url: "http://tools.com/tool.jpg")
     #   expect(tool.valid?).to eq false
     # end
+    end
   end
 
   let(:tool) { create(:tool) }
