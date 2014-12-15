@@ -16,12 +16,7 @@ RSpec.describe SessionsController, :type => :controller do
 
   describe "POST #create" do
 
-    let(:user) { User.create( # creates a functional variable 'user'
-      user_name: "kristen",
-      email: "k@m.com",
-      password: "hello",
-      password_confirmation: "hello"
-      )}
+    let!(:user) { create(:user) }
 
     let(:login_true) { {
       "email"=>"k@m.com",
@@ -67,24 +62,20 @@ RSpec.describe SessionsController, :type => :controller do
 
   describe "POST #destroy" do
 
-    let(:user) { User.create(
-      user_name: "Kristina",
-      email: "k@h.com",
-      admin: false,
-      password: "foo",
-      password_confirmation: "foo"
-      )
-    }
+    let!(:user) { create(:user) }
+
+    before(:each) do
+      session[:user_id] = user.id
+    end
 
     it "clears session" do
-      post :destroy, nil, user_id: user.id
+      post :destroy
       expect(session[:user_id]).to eq nil
     end
 
     it "redirects to root_path" do
-      post :destroy, nil, user_id: user.id
+      post :destroy
       expect(response).to redirect_to(root_path)
     end
   end
-
 end
