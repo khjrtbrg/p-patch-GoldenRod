@@ -2,125 +2,62 @@ require 'rails_helper'
 
 describe User, :type => :model do
 
+  let!(:user) { create(:user) }
+
   describe "User.create" do
     it "is valid" do
-      user = User.create(
-        user_name: "Kristina",
-        email: "k@h.com",
-        admin: false,
-        password: "foo",
-        password_confirmation: "foo"
-      )
       expect(user.valid?).to eq true
     end
 
     it "is invalid without username" do
-      user = User.create(
-        email: "k@h.com",
-        admin: false
-      )
-      expect(user.valid?).to eq false
+      invalid_user = build(:user, user_name: "")
+      expect(invalid_user.invalid?).to eq true
     end
 
     it "is invalid with username < 7 characters" do
-      user = User.create(
-        user_name: "K",
-        email: "k@h.com",
-        admin: false,
-        password: "foo",
-        password_confirmation: "foo"
-      )
-      expect(user.valid?).to eq false
+      invalid_user = build(:user, user_name: "K")
+      expect(invalid_user.invalid?).to eq true
     end
 
     it "is invalid without email" do
-      user = User.create(
-        user_name: "Kristina",
-        admin: false,
-        password: "foo",
-        password_confirmation: "foo"
-      )
-      expect(user.valid?).to eq false
+      invalid_user = build(:user, email: "")
+      expect(invalid_user.invalid?).to eq true
     end
 
     it "is invalid without email format" do
-      user = User.create(
-        user_name: "Kristina",
-        email: "k",
-        admin: false,
-        password: "foo",
-        password_confirmation: "foo"
-      )
-      expect(user.valid?).to eq false
+      invalid_user = build(:user, email: "kristen")
+      expect(invalid_user.invalid?).to eq true
     end
 
     it "is invalid without password" do
-      user = User.create(
-        user_name: "Kristina",
-        email: "k@h.com",
-        admin: false
-      )
-      expect(user.valid?).to eq false
+      invalid_user = build(:user, password: "")
+      expect(invalid_user.invalid?).to eq true
     end
 
     it "is invalid without password confirmation" do
-      user = User.create(
-        user_name: "Kristina",
-        email: "k@h.com",
-        admin: false,
-        password: "foo"
-      )
-      expect(user.valid?).to eq false
+      invalid_user = build(:user, password_confirmation: "")
+      expect(invalid_user.invalid?).to eq true
     end
 
     it "is invalid without matching password confirmation" do
-      user = User.create(
-        user_name: "Kristina",
-        email: "k@h.com",
-        admin: false,
+      invalid_user = build(
+        :user,
         password: "foo",
         password_confirmation: "bar"
       )
-      expect(user.valid?).to eq false
+      expect(invalid_user.invalid?).to eq true
     end
 
     it "is invalid without a unique username" do
-      User.create(
-          user_name: "Kristina",
-          email: "k@h.com",
-          admin: false,
-          password: "foo",
-          password_confirmation: "foo"
-      )
-
-      user = User.create(
-        user_name: "Kristina",
-        email: "ka@h.com",
-        admin: false,
-        password: "bar",
-        password_confirmation: "bar"
-      )
-      expect(user.valid?).to eq false
+      build(:user, user_name: "Kristina")
+      invalid_user = build(:user, user_name: "Kristina")
+      expect(invalid_user.invalid?).to eq true
     end
 
     it "is invalid without a unique email" do
-      User.create(
-          user_name: "Kristina H.",
-          email: "k@h.com",
-          admin: false,
-          password: "foo",
-          password_confirmation: "foo"
-      )
-
-      user = User.create(
-        user_name: "Kristina",
-        email: "k@h.com",
-        admin: false,
-        password: "bar",
-        password_confirmation: "bar"
-      )
-      expect(user.valid?).to eq false
+      build(:user, email: "k@h.com")
+      invalid_user = build(:user, email: "k@h.com")
+      expect(invalid_user.invalid?).to eq true
     end
   end
-
 end
